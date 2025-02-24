@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://hyf1u8n1hbrm"]
+
+[ext_resource type="Script" path="res://scripts/mob.gd" id="1_cmacb"]
+[ext_resource type="Texture2D" uid="uid://deind63n35fvb" path="res://assets/Spider Sprite Sheet.png" id="2_p5dq5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f0xa"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(0, 35, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0r7m"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(32, 35, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_befh2"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(64, 35, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h2mt"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(96, 35, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ompc"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(128, 35, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcw0e"]
+atlas = ExtResource("2_p5dq5")
+region = Rect2(160, 35, 32, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s00em"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f0xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0r7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_befh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h2mt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ompc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcw0e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8kdii"]
+radius = 3.75
+height = 12.0
+
+[node name="mob" type="CharacterBody2D"]
+position = Vector2(32, 0)
+scale = Vector2(4, 4)
+script = ExtResource("1_cmacb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_s00em")
+frame_progress = 0.594534
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8kdii")

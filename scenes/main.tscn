@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5spxjhdl7ey2"]
+
+[ext_resource type="PackedScene" uid="uid://krohasoi5mt0" path="res://scenes/car.tscn" id="1_sg0s2"]
+[ext_resource type="Texture2D" uid="uid://ded2woyxnch6i" path="res://icon.svg" id="2_3rrcp"]
+[ext_resource type="Texture2D" uid="uid://b3b04vjy5g288" path="res://assets/burst_gun.png" id="3_wykoc"]
+[ext_resource type="PackedScene" uid="uid://hyf1u8n1hbrm" path="res://scenes/mob.tscn" id="4_023o0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dv8m"]
+radius = 7.0
+height = 32.0
+
+[node name="Main" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="weaponPanel" type="PanelContainer" parent="UI"]
+offset_left = 1005.0
+offset_top = 500.0
+offset_right = 1145.0
+offset_bottom = 640.0
+
+[node name="burstGun" type="Sprite2D" parent="UI/weaponPanel"]
+texture_filter = 1
+position = Vector2(68.5, 65.5001)
+scale = Vector2(4.60714, 5.21428)
+texture = ExtResource("3_wykoc")
+
+[node name="car" parent="." instance=ExtResource("1_sg0s2")]
+rotation = 4.71239
+
+[node name="Camera2D" type="Camera2D" parent="car"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(204, -169)
+scale = Vector2(17.4063, 15.1484)
+texture = ExtResource("2_3rrcp")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_023o0")]
+position = Vector2(721, 166)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_023o0")]
+position = Vector2(238, 515)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("4_023o0")]
+position = Vector2(-221, 180)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("4_023o0")]
+position = Vector2(1035, 377)
+
+[node name="burstGun" type="StaticBody2D" parent="."]
+position = Vector2(164, -35)
+scale = Vector2(2.88, 2.76)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="burstGun"]
+texture_filter = 1
+texture = ExtResource("3_wykoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="burstGun"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8dv8m")

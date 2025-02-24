@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://krohasoi5mt0"]
+
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_gtn3p"]
+[ext_resource type="Texture2D" uid="uid://nsmb4pqakn0f" path="res://assets/bk_cars1.a.png" id="2_wyx7g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42p48"]
+size = Vector2(94, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6yid"]
+size = Vector2(100, 54)
+
+[node name="car" type="CharacterBody2D"]
+script = ExtResource("1_gtn3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("2_wyx7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_42p48")
+
+[node name="nozzle2" type="Node2D" parent="."]
+position = Vector2(8, 24)
+
+[node name="nozzle1" type="Node2D" parent="."]
+position = Vector2(9, -26)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_h6yid")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
