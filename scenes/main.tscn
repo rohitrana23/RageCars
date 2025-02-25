@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5spxjhdl7ey2"]
+[gd_scene load_steps=9 format=3 uid="uid://b5spxjhdl7ey2"]
 
 [ext_resource type="PackedScene" uid="uid://krohasoi5mt0" path="res://scenes/car.tscn" id="1_sg0s2"]
 [ext_resource type="Texture2D" uid="uid://ded2woyxnch6i" path="res://icon.svg" id="2_3rrcp"]
+[ext_resource type="PackedScene" uid="uid://brb2yn6ghbac8" path="res://scenes/machine_gun.tscn" id="3_b27o8"]
 [ext_resource type="Texture2D" uid="uid://b3b04vjy5g288" path="res://assets/burst_gun.png" id="3_wykoc"]
 [ext_resource type="PackedScene" uid="uid://hyf1u8n1hbrm" path="res://scenes/mob.tscn" id="4_023o0"]
+[ext_resource type="Texture2D" uid="uid://cma3pgmhgk37k" path="res://assets/machine_gun.png" id="6_mxvu3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dv8m"]
 radius = 7.0
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7b5l6"]
+radius = 20.0
+height = 86.0
 
 [node name="Main" type="Node2D"]
 
@@ -26,9 +32,12 @@ scale = Vector2(4.60714, 5.21428)
 texture = ExtResource("3_wykoc")
 
 [node name="car" parent="." instance=ExtResource("1_sg0s2")]
+position = Vector2(-76, 110)
 rotation = 4.71239
 
 [node name="Camera2D" type="Camera2D" parent="car"]
+
+[node name="gun" parent="car" instance=ExtResource("3_b27o8")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -60,5 +69,21 @@ texture_filter = 1
 texture = ExtResource("3_wykoc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="burstGun"]
+position = Vector2(0.347222, -0.362319)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8dv8m")
+
+[node name="machineGun" type="StaticBody2D" parent="."]
+position = Vector2(310, 69)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="machineGun"]
+texture_filter = 1
+position = Vector2(-1, -2)
+scale = Vector2(2.24286, 2.91667)
+texture = ExtResource("6_mxvu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="machineGun"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7b5l6")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://brb2yn6ghbac8"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_8oase"]
+[ext_resource type="Texture2D" uid="uid://cma3pgmhgk37k" path="res://assets/machine_gun.png" id="2_17lqt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6km7"]
+radius = 192.023
+
+[node name="gun" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_8oase")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v6km7")
+
+[node name="pivot" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="pivot"]
+texture_filter = 1
+position = Vector2(34.75, -1)
+scale = Vector2(1.201, 1.1)
+texture = ExtResource("2_17lqt")
+
+[node name="nozzle" type="Marker2D" parent="pivot"]
+position = Vector2(58, -1)

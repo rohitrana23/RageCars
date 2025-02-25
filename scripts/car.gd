@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var steering_angle = 15 
-@export var engine_power = 900  
+@export var engine_power = 900 
 @export var friction = -55 
 @export var drag = -0.06 
 @export var braking = -450 
@@ -12,9 +12,11 @@ extends CharacterBody2D
 @export var traction_slow = 10 
 
 var burstPicked=false
+var machinePicked=false
+var Picked=false
 var Bbullet = preload("res://scenes/bullet_1.tscn")
 
-var wheel_base=65
+var wheel_base=55
 var acceleration = Vector2.ZERO
 var steer_direction
 
@@ -32,6 +34,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and burstPicked==true:
 		burstFire()
 		burstPicked=false
+		Picked=false
+	if Input.is_action_just_pressed("ui_accept") and machinePicked==true:
+		machineFire()
+		machinePicked=false
+		Picked=false
 
 func get_input():
 	var turn = Input.get_axis("ui_left","ui_right")
@@ -86,9 +93,22 @@ func burstFire():
 		get_parent().add_child(bullet2)
 		await get_tree().create_timer(0.2).timeout
 
+func machineFire():
+	for n in range(10):
+		var bullet = Bbullet.instantiate()
+		bullet.dir = $gun.global_rotation
+		bullet.pos = $gun/pivot/nozzle.global_position
+		bullet.rota = $gun.global_rotation
+		get_parent().add_child(bullet)
+		await get_tree().create_timer(0.075).timeout
 
 
 func _on_area_2d_body_entered(body):
-	if body.name == "burstGun":
+	if body.name == "burstGun" and Picked==false:
 		burstPicked=true
+		Picked=true
+		body.queue_free()
+	if body.name == "machineGun" and Picked==false:
+		machinePicked=true
+		Picked=true
 		body.queue_free()

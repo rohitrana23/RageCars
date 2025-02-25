@@ -60,6 +60,8 @@ height = 12.0
 [node name="mob" type="CharacterBody2D"]
 position = Vector2(32, 0)
 scale = Vector2(4, 4)
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_cmacb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -68,6 +70,6 @@ sprite_frames = SubResource("SpriteFrames_s00em")
 frame_progress = 0.594534
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 6.5)
+position = Vector2(-0.5, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8kdii")
